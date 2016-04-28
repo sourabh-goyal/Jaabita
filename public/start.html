@@ -34,7 +34,12 @@
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/bootstrap-table.css" rel="stylesheet">
-
+    <style type="text/css">
+    .form-element label {
+    display: inline-block;
+    width: 150px;
+    }
+    </style>
   </head>
 
   <body>
@@ -169,13 +174,53 @@
       </div> 
     </div>
   </div> <!-- /container -->
- <div id="divEventMessageData" style="display:none;">
-		<form>
-       <label id='snl'></label>
-	   <input id='snl1' type="text"/>
-	   <input type="submit" value="Submit"/>
-	   </form>
+ <div id="updatePCRow" style="display:none;">
+		<div  class="form-element">
+      
+        <label>ID:</label><input id="idupdatepc" name="id" type="text" disabled><br>
+        <label>Model:</label><input id="modelupdatepc" name="model" type="text" required><br>
+        <label>Tag:</label><input id="tagupdatepc" name="tag" type="text" required><br>
+        <label>Project:</label><input id="projectupdatepc" name="project" type="text" required><br>
+        <label>Location:</label><input id="locationupdatepc" name="location" type="text" required><br>
+        <label>Owner:</label><input id="ownerupdatepc" name="owner" type="text" required><br><br>
+        <button type="button" class="btn btn-default" onclick="updatePCRowPost();">submit</button>
     </div>
+  </div>
+  <div id="updateHWRow" style="display:none;">
+    <div  class="form-element">
+      
+        <label>ID:</label><input id="idupdatehw" name="id" type="text" disabled><br>
+        <label>Invoice:</label><input id="invoicecupdatehw" name="model" type="text" required><br>
+        <label>Description:</label><input id="descupdatehw" name="tag" type="text" required><br>
+        <label>Quantity:</label><input id="qtyupdatehw" name="project" type="text" required><br>
+        <label>Value:</label><input id="valupdatehw" name="location" type="text" required><br>
+        <label>Shipping Date:</label><input id="shipdateupdatehw" name="owner" type="date" required><br>
+        <label>Recieved Date:</label><input id="rcvdateupdatehw" name="owner" type="date" required><br>
+        <label>Shipment Duty Paid:</label><input id="dutyupdatehw" name="owner" type="text" required><br>
+        <label>Courier Mode:</label><input id="courierupdatehw" name="owner" type="text" required><br>
+        <label>Team:</label><input id="teamupdatehw" name="owner" type="text" required><br>
+        <label>Recieved by:</label><input id="rcvbyupdatehw" name="owner" type="text" required><br><br>
+        <button type="button" class="btn btn-default" onclick="updateHWRowPost();">submit</button>
+    </div>
+  </div>
+  <div id="updateLicenseRow" style="display:none;">
+    <div  class="form-element">
+      
+        <label>ID:</label><input id="idupdatehw" name="id" type="text" disabled><br>
+        <label>Invoice:</label><input id="invoicecupdatehw" name="model" type="text" required><br>
+        <label>Description:</label><input id="descupdatehw" name="tag" type="text" required><br>
+        <label>Quantity:</label><input id="qtyupdatehw" name="project" type="text" required><br>
+        <label>Value:</label><input id="valupdatehw" name="location" type="text" required><br>
+        <label>Shipping Date:</label><input id="shipdateupdatehw" name="owner" type="date" required><br>
+        <label>Recieved Date:</label><input id="rcvdateupdatehw" name="owner" type="date" required><br>
+        <label>Shipment Duty Paid:</label><input id="dutyupdatehw" name="owner" type="text" required><br>
+        <label>Courier Mode:</label><input id="courierupdatehw" name="owner" type="text" required><br>
+        <label>Team:</label><input id="teamupdatehw" name="owner" type="text" required><br>
+        <label>Recieved by:</label><input id="rcvbyupdatehw" name="owner" type="text" required><br><br>
+        <button type="button" class="btn btn-default" onclick="updateHWRowPost();">submit</button>
+    </div>
+  </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

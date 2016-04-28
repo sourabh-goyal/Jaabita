@@ -5,6 +5,8 @@ app.use(express.static('public'));
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('im.db');
 const crypto = require('crypto');
+var bodyParser = require('body-parser');
+app.use(bodyParser.json())
 
 app.get('/index.html', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
@@ -231,7 +233,7 @@ app.post('/addmobileInventory', function (req, res) {
 
 ///////////////////////////////update methods///////////////////////////
 
-app.put('/updatehwInventory', function (req, res) {
+app.put('/updateHWInventory', function (req, res) {
 
   var response;
   var   id = req.body.id;
@@ -247,17 +249,18 @@ app.put('/updatehwInventory', function (req, res) {
   var   recievedBy= req.body.recievedBy;
   
   db.serialize(function() {
-  var stmt = db.prepare("UPDATE hwinventory SET invoice_num = ?, description = ?, quantity= ?, valueOfHW = ?, shippedDate = ?, recievedDate = ?, shipmentDutyPaid = ?, courierMode = ?, team = ?, recievedBy = ?) WHERE rowid="+id+";");
-  stmt.run(invoice_num , description, quantity, valueOfHW, shippedDate, recievedDate, shipmentDutyPaid, courierMode, team, recievedBy);
+  var stmt = db.prepare("UPDATE hwinventory SET invoice_num = ?, description = ?, quantity= ?, valueOfHW = ?, shippedDate = ?, recievedDate = ?, shipmentDutyPaid = ?, courierMode = ?, team = ?, recievedBy = ? WHERE rowid="+id+";");
+  stmt.run(invoice_num , description, quantity, value, shippedDate, recievedDate, shipmentDutyPaid, courierMode, team, recievedBy);
   stmt.finalize();
 
   });
    res.end(JSON.stringify(response));
 })
 
-app.post('/updatePCInventory', function (req, res) {
+app.put('/updatePCInventory', function (req, res) {
 
   var response;
+  console.log(req.body);
   var   id = req.body.id;
   var   model = req.body.model; 
   var   tag = req.body.tag; 
@@ -267,7 +270,7 @@ app.post('/updatePCInventory', function (req, res) {
   
   db.serialize(function() {
 
-  var stmt = db.prepare("UPDATE pcinventory SET model = ?, tag = ?, project= ?, location = ?, owner = ?) WHERE rowid="+id+";");
+  var stmt = db.prepare("UPDATE pcinventory SET model = ?, tag = ?, project= ?, location = ?, owner = ? WHERE rowid="+id+";");
   stmt.run(model , tag, project, location, owner);
   stmt.finalize();
 
@@ -275,7 +278,7 @@ app.post('/updatePCInventory', function (req, res) {
    res.end(JSON.stringify(response));
 })
 
-app.post('/updateLicneseInventory', function (req, res) {
+app.put('/updateLicneseInventory', function (req, res) {
 
   var response;
   var id = req.body.id;
@@ -287,7 +290,7 @@ app.post('/updateLicneseInventory', function (req, res) {
   var   owners = req.body.owners;
   
   db.serialize(function() {
-  var stmt = db.prepare("UPDATE licenseinventory SET category = ?, product = ?, description = ?, quantity = ?, comments = ?, owners = ?) WHERE rowid="+id+";");
+  var stmt = db.prepare("UPDATE licenseinventory SET category = ?, product = ?, description = ?, quantity = ?, comments = ?, owners = ? WHERE rowid="+id+";");
   stmt.run(category, product, description, quantity, comments, owners);
   stmt.finalize();
 
@@ -316,7 +319,7 @@ app.put('/updatemobileInventory', function (req, res) {
 
   db.serialize(function() {
 
-  var stmt = db.prepare("UPDATE mobinventory SET os = ?, type = ?, size= ?, quantity = ?, valueOfEquip = ?, primaryProject = ?, adapter = ?, powercord = ?, capacity = ?, mode =? , headset =?, recievedDate = ?, currentOwner = ?) WHERE rowid="+id+";");
+  var stmt = db.prepare("UPDATE mobinventory SET os = ?, type = ?, size= ?, quantity = ?, valueOfEquip = ?, primaryProject = ?, adapter = ?, powercord = ?, capacity = ?, mode =? , headset =?, recievedDate = ?, currentOwner = ? WHERE rowid="+id+";");
   stmt.run(os, mobtype, size, quantity, value, project, adapter, powercord, capacity, mode, headset, recievedDate, currentOwner);
   stmt.finalize();
 

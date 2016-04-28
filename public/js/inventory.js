@@ -95,26 +95,102 @@
           }
       }  
 
-        function editrow(tableid, rowid, rowno)
+        function editpcrow(tableid, rowid, rowno)
         {
-  			alert(tableid.rows[1].cells[1].innerText);
-$("#snl").text(tableid.rows[1].cells[1].innerText);
-$("#snl1").val(tableid.rows[1].cells[1].innerText);
-            $("#divEventMessageData").dialog({ 
+            rowno=rowno+1; // skipping th
+            $("#idupdatepc").val(tableid.rows[rowno].cells[1].innerText);
+            $("#modelupdatepc").val(tableid.rows[rowno].cells[2].innerText);
+            $("#tagupdatepc").val(tableid.rows[rowno].cells[3].innerText);
+            $("#projectupdatepc").val(tableid.rows[rowno].cells[4].innerText);
+            $("#locationupdatepc").val(tableid.rows[rowno].cells[5].innerText);
+            $("#ownerupdatepc").val(tableid.rows[rowno].cells[6].innerText);
+            $("#updatePCRow").dialog({ 
             autoOpen: false, 
-            title: "Event Message Data", 
-            width: 600, 
+            title: "Edit Record",
             show: { 
                 effect: "blind", 
-                duration: 1000 
+                duration: 500 
             }, 
             hide: { 
-                duration: 1000 
+                effect: "fold",
+                duration: 500 
             }
         });  
-        $("#divEventMessageData").dialog("open");
-        }
+        $("#updatePCRow").dialog("open");
+      }
 
+
+      function updatePCRowPost()
+      {
+        $("#updatePCRow").dialog("close");
+        var data = { id:$("#idupdatepc").val(), 
+        model:$("#modelupdatepc").val(), 
+        tag:$("#tagupdatepc").val(), 
+        project:$("#projectupdatepc").val(), 
+        location:$("#locationupdatepc").val(), 
+        owner:$("#ownerupdatepc").val()};
+        $.ajax({
+          type: "PUT",
+          url: "/updatePCInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadPCTable();
+    }
+
+    function edithwrow(tableid, rowid, rowno)
+    {
+            rowno=rowno+1; // skipping th
+            $("#idupdatehw").val(tableid.rows[rowno].cells[1].innerText);
+            $("#invoicecupdatehw").val(tableid.rows[rowno].cells[2].innerText);
+            $("#descupdatehw").val(tableid.rows[rowno].cells[3].innerText);
+            $("#qtyupdatehw").val(tableid.rows[rowno].cells[4].innerText);
+            $("#valupdatehw").val(tableid.rows[rowno].cells[5].innerText);
+            $("#shipdateupdatehw").val(tableid.rows[rowno].cells[6].innerText);
+            $("#rcvdateupdatehw").val(tableid.rows[rowno].cells[7].innerText);
+            $("#dutyupdatehw").val(tableid.rows[rowno].cells[8].innerText);
+            $("#courierupdatehw").val(tableid.rows[rowno].cells[9].innerText);
+            $("#teamupdatehw").val(tableid.rows[rowno].cells[10].innerText);
+            $("#rcvbyupdatehw").val(tableid.rows[rowno].cells[11].innerText);
+            $("#updateHWRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#updateHWRow").dialog("open");
+    }
+
+    function updateHWRowPost()
+      {
+        $("#updateHWRow").dialog("close");
+        var data = { id:$("#idupdatehw").val(), 
+        invoice_num:$("#invoicecupdatehw").val(), 
+        description:$("#descupdatehw").val(), 
+        quantity:$("#qtyupdatehw").val(), 
+        value:$("#valupdatehw").val(), 
+        shippedDate:$("#shipdateupdatehw").val(),
+        recievedDate:$("#rcvdateupdatehw").val(),
+        shipmentDutyPaid:$("#dutyupdatehw").val(),
+        courierMode:$("#courierupdatehw").val(),
+        team:$("#teamupdatehw").val(),
+        recievedBy:$("#rcvbyupdatehw").val() };
+        $.ajax({
+          type: "PUT",
+          url: "/updateHWInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadPCTable();
+    }
         function fillPCTable(jsonResponse, tableId)
         {
          
@@ -137,7 +213,7 @@ $("#snl1").val(tableid.rows[1].cells[1].innerText);
             var project = row.insertCell(4);
             var location = row.insertCell(5);
             var owner = row.insertCell(6);
-            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
+            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editpcrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
             sno.innerHTML =  i+1;
             model.innerHTML = jsonObject.model;
             tag.innerHTML = jsonObject.tag;
@@ -176,7 +252,7 @@ $("#snl1").val(tableid.rows[1].cells[1].innerText);
             var team = row.insertCell(10);
             var rcvdby = row.insertCell(11);
 
-            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
+            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=edithwrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
             sno.innerHTML = i+1;
             invoice.innerHTML = jsonObject.invoice;
             description.innerHTML = jsonObject.description;
@@ -285,7 +361,7 @@ $("#snl1").val(tableid.rows[1].cells[1].innerText);
           fillPCTable(xhttp.responseText, "pcInvTable");
           }
           };
-          xhttp.open("GET", "http://10.176.49.96:8081/getPCInventory", true);
+          xhttp.open("GET", "/getPCInventory", true);
          xhttp.send();
         }
 
@@ -297,7 +373,7 @@ $("#snl1").val(tableid.rows[1].cells[1].innerText);
           fillHWTable(xhttp.responseText, "hwInvTable");
           }
           };
-          xhttp.open("GET", "http://10.176.49.96:8081/getHWInventory", true);
+          xhttp.open("GET", "/getHWInventory", true);
          xhttp.send();
         }
 
@@ -309,7 +385,7 @@ $("#snl1").val(tableid.rows[1].cells[1].innerText);
           fillMobTable(xhttp.responseText, "mobileInvTable");
           }
           };
-          xhttp.open("GET", "http://10.176.49.96:8081/getmobileInventory", true);
+          xhttp.open("GET", "/getmobileInventory", true);
          xhttp.send();
         }
 
@@ -321,6 +397,6 @@ $("#snl1").val(tableid.rows[1].cells[1].innerText);
           fillLicenseTable(xhttp.responseText, "licenseInvTable");
           }
           };
-          xhttp.open("GET", "http://10.176.49.96:8081/getLicenseInventory", true);
+          xhttp.open("GET", "/getLicenseInventory", true);
          xhttp.send();
         }
