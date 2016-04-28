@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Inventory Management</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/jquery-ui.css" rel="stylesheet" />
+ 
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <h1> Inventory Tool </h1>
+      <ul class="nav nav-tabs ">
+        <li  class="active"><a data-toggle="tab" href="#home"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li ><a data-toggle="tab" onclick="loadPCTable();" href="#pcInv"> <span class="glyphicon glyphicon-blackboard"></span> PC</a></li>
+        <li><a data-toggle="tab" onclick="loadHWTable();" href="#hwInv"><span class="glyphicon glyphicon-wrench"> Hardware</a></li>
+        <li><a data-toggle="tab" onclick="loadMobTable();" href="#mobileTabInv"><span class="glyphicon glyphicon-phone"></span> Mobile</a></li>
+        <li><a data-toggle="tab" onclick="loadLicenseTable();" href="#licenseInv"><span class="glyphicon glyphicon-file"></span> License</a></li>
+      </ul>
+
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <h3>Tool for managing inventory.</h3>
+        <p></p>
+      </div>
+      <div id="pcInv" class="tab-pane fade">
+        <table class="table table-striped table-responsive" data-toggle="table" id="pcInvTable">
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th >S No.</th>
+        <th  >Model</th>
+        <th  >Tag Number</th>
+        <th  >Project</th>
+        <th >Location</th>
+        <th >Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <p>&nbsp;<p>
+   <button type="button" class="btn btn-info btn-lg" onClick='loadPCTable();'>
+          <span class="glyphicon glyphicon-refresh" title=refresh></span>
+    </button>
+    <button type="button" class="btn btn-info btn-lg" onClick='loadPCTable();'>
+          <span class="glyphicon glyphicon-plus" title="add"></span> 
+    </button>
+      </div>
+
+      <div id="hwInv" class="tab-pane fade">
+        <table class="table table-striped table-responsive" data-toggle="table" id="hwInvTable">
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th>S No.</th>
+        <th >Invoice</th>
+        <th >Description</th>
+        <th >Quantity</th>
+        <th>Value</th>
+        <th>Shipped on</th>
+        <th>Recieved on</th>
+        <th >Shipment Duty Paid</th>
+        <th>Courier Mode</th>
+        <th >Team</th>
+        <th>Recieved By</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <p>&nbsp;<p>
+   <button type="button" class="btn btn-info btn-lg" onClick='loadHWTable();'>
+          <span class="glyphicon glyphicon-refresh" title=refresh></span>
+    </button>
+    <button type="button" class="btn btn-info btn-lg" onClick='loadHWTable();'>
+          <span class="glyphicon glyphicon-plus" title="add"></span> 
+    </button>
+      </div> 
+
+      <div id="mobileTabInv" class="tab-pane fade">
+        <table class="table table-striped table-responsive" data-toggle="table" id="mobileInvTable">
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th>S No.</th>
+        <th>OS</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Value</th>
+        <th>Quantity</th>
+        <th>Recieved Date</th>
+        <th>Primary Project</th>
+        <th>Adapter</th>
+        <th>Power Cord</th>
+        <th>Capacity</th>
+        <th>Mode</th>
+        <th>Headset</th>
+        <th>Current Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <p>&nbsp;<p>
+   <button type="button" class="btn btn-info btn-lg" onClick='loadMobTable();'>
+          <span class="glyphicon glyphicon-refresh" title=refresh></span>
+    </button>
+    <button type="button" class="btn btn-info btn-lg" onClick='loadMobTable();'>
+          <span class="glyphicon glyphicon-plus" title="add"></span> 
+    </button>
+      </div> 
+
+
+      <div id="licenseInv" class="tab-pane fade">
+        <table class="table table-striped table-responsive" data-toggle="table" id="licenseInvTable">
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th>S No.</th>
+        <th>Category</th>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Comments</th>
+        <th>Owners</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <p>&nbsp;<p>
+   <button type="button" class="btn btn-info btn-lg" onClick='loadLicenseTable();'>
+          <span class="glyphicon glyphicon-refresh" title=refresh></span>
+    </button>
+    <button type="button" class="btn btn-info btn-lg" onClick='loadLicenseTable();'>
+          <span class="glyphicon glyphicon-plus" title="add"></span> 
+    </button>
+      </div> 
+    </div>
+  </div> <!-- /container -->
+ <div id="divEventMessageData" style="display:none;">
+		<form>
+       <label id='snl'></label>
+	   <input id='snl1' type="text"/>
+	   <input type="submit" value="Submit"/>
+	   </form>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="js/jquery.min.js"></script>
+	   <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/inventory.js"></script>
+  </body>
+</html>
