@@ -189,7 +189,111 @@
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadPCTable();
+        loadHWTable();
+    }
+function editlirow(tableid, rowid, rowno)
+  {
+            rowno=rowno+1; // skipping th
+            $("#idupdateli").val(tableid.rows[rowno].cells[1].innerText);
+            $("#categoryupdateli").val(tableid.rows[rowno].cells[2].innerText);
+            $("#productupdateli").val(tableid.rows[rowno].cells[3].innerText);
+            $("#descupdateli").val(tableid.rows[rowno].cells[4].innerText);
+            $("#qtyupdateli").val(tableid.rows[rowno].cells[5].innerText);
+            $("#commentupdateli").val(tableid.rows[rowno].cells[6].innerText);
+            $("#ownerupdateli").val(tableid.rows[rowno].cells[7].innerText);
+            $("#updateLicenseRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#updateLicenseRow").dialog("open");
+    }
+
+function updateLIRowPost()
+      {
+        $("#updateLicenseRow").dialog("close");
+        var data = { id:$("#idupdateli").val(), 
+        category:$("#categoryupdateli").val(), 
+        product:$("#productupdateli").val(), 
+        description:$("#descupdateli").val(), 
+        quantity:$("#qtyupdateli").val(), 
+        comments:$("#commentupdateli").val(),
+        owners:$("#ownerupdateli").val() };
+        $.ajax({
+          type: "PUT",
+          url: "/updateLicenseInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadLicenseTable();
+    }
+
+function editmtrow(tableid, rowid, rowno)
+    {
+            rowno=rowno+1; // skipping th
+            $("#idupdatemt").val(tableid.rows[rowno].cells[1].innerText);
+            $("#osupdatemt").val(tableid.rows[rowno].cells[2].innerText);
+            $("#typeupdatemt").val(tableid.rows[rowno].cells[3].innerText);
+            $("#sizeupdatemt").val(tableid.rows[rowno].cells[4].innerText);
+            $("#valueupdatemt").val(tableid.rows[rowno].cells[5].innerText);
+            $("#qtyupdatemt").val(tableid.rows[rowno].cells[6].innerText);
+            $("#rcvdateupdatemt").val(tableid.rows[rowno].cells[7].innerText);
+            $("#projectupdatemt").val(tableid.rows[rowno].cells[8].innerText);
+            $("#adapterupdatemt").val(tableid.rows[rowno].cells[9].innerText);
+            $("#pcupdatemt").val(tableid.rows[rowno].cells[10].innerText);
+            $("#capupdatemt").val(tableid.rows[rowno].cells[11].innerText);
+            $("#modeupdatemt").val(tableid.rows[rowno].cells[12].innerText);
+            $("#headsetupdatemt").val(tableid.rows[rowno].cells[13].innerText);
+            $("#coupdatemt").val(tableid.rows[rowno].cells[14].innerText);
+            $("#updateMobRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#updateMobRow").dialog("open");
+    }
+
+function updateMTRowPost()
+      {
+        $("#updateMobRow").dialog("close");
+        var data = { id:$("#idupdatemt").val(), 
+        os:$("#osupdatemt").val(), 
+        type:$("#typeupdatemt").val(), 
+        size:$("#sizeupdatemt").val(), 
+        quantity:$("#qtyupdatemt").val(), 
+        value:$("#valueupdatemt").val(),
+        project:$("#projectupdatemt").val(),
+        adapter:$("#adapterupdatemt").val(),
+        powercord:$("#pcupdatemt").val(),
+        capacity:$("#capupdatemt").val(),
+        mode:$("#modeupdatemt").val(),
+        headset:$("#headsetupdatemt").val(),
+        recievedDate:$("#rcvdateupdatemt").val(),
+        currentOwner:$("#coupdatemt").val()
+         };
+        $.ajax({
+          type: "PUT",
+          url: "/updatemobileInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadMobTable();
     }
         function fillPCTable(jsonResponse, tableId)
         {
@@ -247,7 +351,7 @@
             var value = row.insertCell(5);
             var shipDate = row.insertCell(6);
             var rcvDate = row.insertCell(7);
-            var shipmentDutyPaid = row.insertCell(7);
+            var shipmentDutyPaid = row.insertCell(8);
             var courier = row.insertCell(9);
             var team = row.insertCell(10);
             var rcvdby = row.insertCell(11);
@@ -298,7 +402,7 @@
             var headset = row.insertCell(13);
             var owner = row.insertCell(14);
 
-            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
+            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editmtrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
             sno.innerHTML = i+1;
             os.innerHTML = jsonObject.os;
             type.innerHTML = jsonObject.type;
@@ -340,7 +444,7 @@
             var comments = row.insertCell(6);
             var owners = row.insertCell(7);
 
-            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editrow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
+            operation.innerHTML = "<span class='glyphicon glyphicon-edit' onClick=editlirow("+tableId+","+rowid+","+i+"); title='edit record' ></span>  <span class='glyphicon glyphicon-copy' onClick=copyrow("+tableId+","+rowid+"); title='copy record'></span>  <span class='glyphicon glyphicon-trash' onClick=deleterow("+tableId+","+rowid+"); title='delete record' ></span>";
             sno.innerHTML = i+1;
             category.innerHTML = jsonObject.category;
             product.innerHTML = jsonObject.product;
@@ -400,3 +504,29 @@
           xhttp.open("GET", "/getLicenseInventory", true);
          xhttp.send();
         }
+
+
+        function addpcrow(tableid)
+        {
+            /*rowno=rowno+1; // skipping th
+            $("#idupdatepc").val(tableid.rows[rowno].cells[1].innerText);
+            $("#modelupdatepc").val(tableid.rows[rowno].cells[2].innerText);
+            $("#tagupdatepc").val(tableid.rows[rowno].cells[3].innerText);
+            $("#projectupdatepc").val(tableid.rows[rowno].cells[4].innerText);
+            $("#locationupdatepc").val(tableid.rows[rowno].cells[5].innerText);
+            $("#ownerupdatepc").val(tableid.rows[rowno].cells[6].innerText);*/
+            $("#updatePCRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#updatePCRow").dialog("open");
+        
+      }

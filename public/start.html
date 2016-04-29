@@ -78,7 +78,7 @@
    <button type="button" class="btn btn-info btn-lg" onClick='loadPCTable();'>
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-lg" onClick='loadPCTable();'>
+    <button type="button" class="btn btn-info btn-lg" onClick="addpcrow('pcInvTable');">
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div>
@@ -189,38 +189,53 @@
   <div id="updateHWRow" style="display:none;">
     <div  class="form-element">
       
-        <label>ID:</label><input id="idupdatehw" name="id" type="text" disabled><br>
-        <label>Invoice:</label><input id="invoicecupdatehw" name="model" type="text" required><br>
-        <label>Description:</label><input id="descupdatehw" name="tag" type="text" required><br>
-        <label>Quantity:</label><input id="qtyupdatehw" name="project" type="text" required><br>
-        <label>Value:</label><input id="valupdatehw" name="location" type="text" required><br>
-        <label>Shipping Date:</label><input id="shipdateupdatehw" name="owner" type="date" required><br>
-        <label>Recieved Date:</label><input id="rcvdateupdatehw" name="owner" type="date" required><br>
-        <label>Shipment Duty Paid:</label><input id="dutyupdatehw" name="owner" type="text" required><br>
-        <label>Courier Mode:</label><input id="courierupdatehw" name="owner" type="text" required><br>
-        <label>Team:</label><input id="teamupdatehw" name="owner" type="text" required><br>
-        <label>Recieved by:</label><input id="rcvbyupdatehw" name="owner" type="text" required><br><br>
+        <label>ID:</label><input id="idupdatehw"  type="text" disabled><br>
+        <label>Invoice:</label><input id="invoicecupdatehw"  type="text" required><br>
+        <label>Description:</label><input id="descupdatehw"  type="text" required><br>
+        <label>Quantity:</label><input id="qtyupdatehw"  type="text" required><br>
+        <label>Value:</label><input id="valupdatehw" type="text" required><br>
+        <label>Shipping Date:</label><input id="shipdateupdatehw"  type="date" required><br>
+        <label>Recieved Date:</label><input id="rcvdateupdatehw" type="date" required><br>
+        <label>Shipment Duty Paid:</label><input id="dutyupdatehw"  type="text" required><br>
+        <label>Courier Mode:</label><input id="courierupdatehw" type="text" required><br>
+        <label>Team:</label><input id="teamupdatehw"  type="text" required><br>
+        <label>Recieved by:</label><input id="rcvbyupdatehw" type="text" required><br><br>
         <button type="button" class="btn btn-default" onclick="updateHWRowPost();">submit</button>
     </div>
   </div>
   <div id="updateLicenseRow" style="display:none;">
     <div  class="form-element">
       
-        <label>ID:</label><input id="idupdatehw" name="id" type="text" disabled><br>
-        <label>Invoice:</label><input id="invoicecupdatehw" name="model" type="text" required><br>
-        <label>Description:</label><input id="descupdatehw" name="tag" type="text" required><br>
-        <label>Quantity:</label><input id="qtyupdatehw" name="project" type="text" required><br>
-        <label>Value:</label><input id="valupdatehw" name="location" type="text" required><br>
-        <label>Shipping Date:</label><input id="shipdateupdatehw" name="owner" type="date" required><br>
-        <label>Recieved Date:</label><input id="rcvdateupdatehw" name="owner" type="date" required><br>
-        <label>Shipment Duty Paid:</label><input id="dutyupdatehw" name="owner" type="text" required><br>
-        <label>Courier Mode:</label><input id="courierupdatehw" name="owner" type="text" required><br>
-        <label>Team:</label><input id="teamupdatehw" name="owner" type="text" required><br>
-        <label>Recieved by:</label><input id="rcvbyupdatehw" name="owner" type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="updateHWRowPost();">submit</button>
+        <label>ID:</label><input id="idupdateli" type="text" disabled><br>
+        <label>Category:</label><input id="categoryupdateli"  type="text" required><br>
+        <label>Product:</label><input id="productupdateli"  type="text" required><br>
+        <label>Description:</label><input id="descupdateli" type="text" required><br>
+        <label>Quantity:</label><input id="qtyupdateli" type="text" required><br>
+        <label>Comments:</label><input id="commentupdateli" type="date" required><br>
+        <label>Owners:</label><input id="ownerupdateli"  type="date" required><br><br>
+        <button type="button" class="btn btn-default" onclick="updateLIRowPost();">submit</button>
     </div>
   </div>
-
+   <div id="updateMobRow" style="display:none;">
+    <div  class="form-element">
+      
+        <label>ID:</label><input id="idupdatemt"  type="text" disabled><br>
+        <label>OS:</label><input id="osupdatemt"  type="text" required><br>
+        <label>Type:</label><input id="typeupdatemt"  type="text" required><br>
+        <label>Size:</label><input id="sizeupdatemt"  type="text" required><br>
+        <label>Value:</label><input id="valueupdatemt" type="text" required><br>
+        <label>Quantity:</label><input id="qtyupdatemt"  type="text" required><br>
+        <label>Recieved Date:</label><input id="rcvdateupdatemt" type="date" required><br>
+        <label>Project:</label><input id="projectupdatemt"  type="text" required><br>
+        <label>Adapter:</label><input id="adapterupdatemt" type="text" required><br>
+        <label>Power Cord:</label><input id="pcupdatemt"  type="text" required><br>
+        <label>Capacity:</label><input id="capupdatemt" type="text" required><br>
+        <label>Mode:</label><input id="modeupdatemt"  type="text" required><br>
+        <label>HeadSet:</label><input id="headsetupdatemt"  type="text" required><br>
+        <label>Current Owner:</label><input id="coupdatemt"  type="text" required><br><br>
+        <button type="button" class="btn btn-default" onclick="updateMTRowPost();">submit</button>
+    </div>
+  </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

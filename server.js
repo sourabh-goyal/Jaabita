@@ -278,7 +278,7 @@ app.put('/updatePCInventory', function (req, res) {
    res.end(JSON.stringify(response));
 })
 
-app.put('/updateLicneseInventory', function (req, res) {
+app.put('/updateLicenseInventory', function (req, res) {
 
   var response;
   var id = req.body.id;
@@ -320,7 +320,7 @@ app.put('/updatemobileInventory', function (req, res) {
   db.serialize(function() {
 
   var stmt = db.prepare("UPDATE mobinventory SET os = ?, type = ?, size= ?, quantity = ?, valueOfEquip = ?, primaryProject = ?, adapter = ?, powercord = ?, capacity = ?, mode =? , headset =?, recievedDate = ?, currentOwner = ? WHERE rowid="+id+";");
-  stmt.run(os, mobtype, size, quantity, value, project, adapter, powercord, capacity, mode, headset, recievedDate, currentOwner);
+  stmt.run(os, type, size, quantity, value, project, adapter, powercord, capacity, mode, headset, recievedDate, currentOwner);
   stmt.finalize();
 
   });
