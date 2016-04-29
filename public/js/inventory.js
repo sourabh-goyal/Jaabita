@@ -504,18 +504,11 @@ function updateMTRowPost()
           xhttp.open("GET", "/getLicenseInventory", true);
          xhttp.send();
         }
+//////////////////////////////////////////////////////////////////
 
-
-        function addpcrow(tableid)
+        function addpcrow()
         {
-            /*rowno=rowno+1; // skipping th
-            $("#idupdatepc").val(tableid.rows[rowno].cells[1].innerText);
-            $("#modelupdatepc").val(tableid.rows[rowno].cells[2].innerText);
-            $("#tagupdatepc").val(tableid.rows[rowno].cells[3].innerText);
-            $("#projectupdatepc").val(tableid.rows[rowno].cells[4].innerText);
-            $("#locationupdatepc").val(tableid.rows[rowno].cells[5].innerText);
-            $("#ownerupdatepc").val(tableid.rows[rowno].cells[6].innerText);*/
-            $("#updatePCRow").dialog({ 
+            $("#addPCRow").dialog({ 
             autoOpen: false, 
             title: "Edit Record",
             show: { 
@@ -527,6 +520,147 @@ function updateMTRowPost()
                 duration: 500 
             }
         });  
-        $("#updatePCRow").dialog("open");
-        
+        $("#addPCRow").dialog("open");
       }
+
+
+      function addPCRowPost()
+      {
+        $("#addPCRow").dialog("close");
+        var data = { 
+        model:$("#imodelupdatepc").val(), 
+        tag:$("#itagupdatepc").val(), 
+        project:$("#iprojectupdatepc").val(), 
+        location:$("#ilocationupdatepc").val(), 
+        owner:$("#iownerupdatepc").val()};
+        $.ajax({
+          type: "POST",
+          url: "/addPCInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadPCTable();
+    }
+
+    function addhwrow()
+    {
+        $("#addHWRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#addHWRow").dialog("open");
+    }
+
+    function addHWRowPost()
+      {
+        $("#addHWRow").dialog("close");
+        var data = { 
+        invoice_num:$("#iinvoicecupdatehw").val(), 
+        description:$("#idescupdatehw").val(), 
+        quantity:$("#iqtyupdatehw").val(), 
+        value:$("#ivalupdatehw").val(), 
+        shippedDate:$("#ishipdateupdatehw").val(),
+        recievedDate:$("#ircvdateupdatehw").val(),
+        shipmentDutyPaid:$("#idutyupdatehw").val(),
+        courierMode:$("#icourierupdatehw").val(),
+        team:$("#iteamupdatehw").val(),
+        recievedBy:$("#ircvbyupdatehw").val() };
+        $.ajax({
+          type: "POST",
+          url: "/addhwInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadHWTable();
+    }
+function addlirow()
+  {
+            $("#addLicenseRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#addLicenseRow").dialog("open");
+    }
+
+function addLIRowPost()
+      {
+        $("#addLicenseRow").dialog("close");
+        var data = { 
+        category:$("#icategoryupdateli").val(), 
+        product:$("#iproductupdateli").val(), 
+        description:$("#idescupdateli").val(), 
+        quantity:$("#iqtyupdateli").val(), 
+        comments:$("#icommentupdateli").val(),
+        owners:$("#iownerupdateli").val() };
+        $.ajax({
+          type: "POST",
+          url: "/addLicneseInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadLicenseTable();
+    }
+
+function addmtrow()
+    {
+            $("#addMobRow").dialog({ 
+            autoOpen: false, 
+            title: "Edit Record",
+            show: { 
+                effect: "blind", 
+                duration: 500 
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+        $("#addMobRow").dialog("open");
+    }
+
+function addMTRowPost()
+      {
+        $("#addMobRow").dialog("close");
+        var data = {  
+        os:$("#iosupdatemt").val(), 
+        type:$("#itypeupdatemt").val(), 
+        size:$("#isizeupdatemt").val(), 
+        quantity:$("#iqtyupdatemt").val(), 
+        value:$("#ivalueupdatemt").val(),
+        project:$("#iprojectupdatemt").val(),
+        adapter:$("#iadapterupdatemt").val(),
+        powercord:$("#ipcupdatemt").val(),
+        capacity:$("#icapupdatemt").val(),
+        mode:$("#imodeupdatemt").val(),
+        headset:$("#iheadsetupdatemt").val(),
+        recievedDate:$("#ircvdateupdatemt").val(),
+        currentOwner:$("#icoupdatemt").val()
+         };
+        $.ajax({
+          type: "POST",
+          url: "/addmobileInventory",
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify(data)
+      });
+        loadMobTable();
+    }
