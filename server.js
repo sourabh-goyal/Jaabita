@@ -223,7 +223,7 @@ app.post('/addmobileInventory', function (req, res) {
   db.serialize(function() {
 
   var stmt = db.prepare("INSERT INTO mobinventory (os , type, size, quantity, valueOfEquip, primaryProject, adapter, powercord, capacity, mode, headset, recievedDate, currentOwner) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
-  stmt.run(os, mobtype, size, quantity, value, project, adapter, powercord, capacity, mode, headset, recievedDate, currentOwner);
+  stmt.run(os, type, size, quantity, value, project, adapter, powercord, capacity, mode, headset, recievedDate, currentOwner);
   stmt.finalize();
 
   });
