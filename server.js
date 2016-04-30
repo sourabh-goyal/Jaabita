@@ -501,6 +501,45 @@ app.get('/login', function (req, res) {
    res.end(JSON.stringify(response));
 })
 
+app.get('/getCriteria', function (req, res) {
+  
+  var type = req.query.type;
+  var response =[];
+  switch(type)
+  {
+    case 'pc':
+    var option = {optionValue:'model', optionDisplay:'Model'};
+    response.push(option);
+    option = {optionValue:'tag', optionDisplay:'Tag'};
+    response.push(option);
+    option = {optionValue:'project', optionDisplay:'Project'};
+    response.push(option);
+    option = {optionValue:'location', optionDisplay:'Location'};
+    response.push(option);
+    option = {optionValue:'owner', optionDisplay:'Owner'};
+    response.push(option);
+    break;
+    case 'hw':
+    response = ['invoice_num' , 'description', 'quantity', 'valueOfHW', 'shippedDate', 'recievedDate', 'shipmentDutyPaid', 'courierMode', 'team', 'recievedBy'];
+    break;
+    case 'mob':
+    break;
+    case 'lic':
+    var option = {optionValue:'model', optionDisplay:'Model'};
+    response.push(option);
+    option = {optionValue:'tag', optionDisplay:'Tag'};
+    response.push(option);
+    option = {optionValue:'project', optionDisplay:'Project'};
+    response.push(option);
+    option = {optionValue:'location', optionDisplay:'Location'};
+    response.push(option);
+    option = {optionValue:'owner', optionDisplay:'Owner'};
+    response.push(option);
+    break;
+  }
+   res.end(JSON.stringify(response));
+})
+
 var server = app.listen(8081, function () {
 
   var host = server.address().address

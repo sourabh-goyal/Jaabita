@@ -664,3 +664,15 @@ function addMTRowPost()
       });
         loadMobTable();
     }
+/////////////////////////////////////////////////////////////////
+function getCriteria(val)
+{
+  $.getJSON("/getCriteria?type="+val, function(j){
+      console.log(j);
+      var options = '';
+      for (var i = 0; i < j.length; i++) {
+        options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
+      }
+      $("select#ctlCrit").html(options);});
+
+}

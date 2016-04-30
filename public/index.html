@@ -34,19 +34,26 @@
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/bootstrap-table.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
     <style type="text/css">
     .form-element label {
     display: inline-block;
     width: 150px;
+    }
+
+    .selectwidthauto
+    {
+     width: 200px !important;
+     height: 30px !important;
     }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <h1> Inventory Tool </h1>
+      <h1><span><img src='/images/inventory_icon.png' height="40" width="50"></span> Jābitā </h1><span style="font-size:16px">An Ultra Light Weight Inventory Management Tool</span><br><br>
       <ul class="nav nav-tabs ">
-        <li  class="active"><a data-toggle="tab" href="#home"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li  class="active"><a data-toggle="tab" href="#home"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li ><a data-toggle="tab" onclick="loadPCTable();" href="#pcInv"> <span class="glyphicon glyphicon-blackboard"></span> PC</a></li>
         <li><a data-toggle="tab" onclick="loadHWTable();" href="#hwInv"><span class="glyphicon glyphicon-wrench"> Hardware</a></li>
         <li><a data-toggle="tab" onclick="loadMobTable();" href="#mobileTabInv"><span class="glyphicon glyphicon-phone"></span> Mobile</a></li>
@@ -55,18 +62,45 @@
 
     <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
-        <h3>An Ultra Light Weight Inventory Management Tool</h3>
-        <div class="row">
-  <div class="col-lg-6">
+        <!-- <h3>An Ultra Light Weight Inventory Management Tool</h3><br><br> -->
+        
+  <!-- <div class="col-lg-6">
     <div class="input-group">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">Search!</button>
       </span>
       <input type="text" class="form-control" id="pcSearchKeywords" placeholder="Search for...">
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><br>
-      </div>
+    </div><
+  </div> -->
+
+  <div class="form-element">
+  <fieldset >
+  <legend></legend>
+  <label for="ctlJob">Inventory Type:</label>
+  <select class="selectwidthauto"  onchange="getCriteria(this.value);" name="id" id="ctlType" >
+    <option value="pc">PC</option>
+    <option value="hw">Hardware</option>
+    <option value="mob">Mobile &amp; Tablet</option>
+    <option value="lic">License</option>
+  </select>
+  <br><br>
+  <label for="ctlPerson">Search Criterion:</label>
+  <select class="selectwidthauto"  name="person_id" id="ctlCrit">
+    <option value="model">Model</option>
+    <option value="tag">Tag</option>
+    <option value="project">Project</option>
+    <option value="location">Location</option>
+    <option value="owner">Owner</option>
+  </select><br><br>
+  <label for="ctlPerson">Keyword(s):</label>
+  <input type="text" class="selectwidthauto" id="searchText"></input>
+  <br><br>
+  <button type="button" class="btn btn-info btn-md">
+          <span class="glyphicon glyphicon-search"></span>  Search
+  </button> 
+  </fieldset>
+  </div>
+  </div>
       <div id="pcInv" class="tab-pane fade">
         <table class="table table-striped table-responsive" data-toggle="table" id="pcInvTable">
     <thead>
@@ -85,10 +119,10 @@
   </table>
   <p>&nbsp;<p>
    
-<button type="button" class="btn btn-info btn-lg" onClick='loadPCTable();'>
+<button type="button" class="btn btn-info btn-md" onClick='loadPCTable();'>
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-lg" onClick="addpcrow();">
+    <button type="button" class="btn btn-info btn-md" onClick="addpcrow();">
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div>
@@ -115,10 +149,10 @@
     </tbody>
   </table>
   <p>&nbsp;<p>
-   <button type="button" class="btn btn-info btn-lg" onClick='loadHWTable();'>
+   <button type="button" class="btn btn-info btn-md" onClick='loadHWTable();'>
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-lg" onClick='addhwrow();'>
+    <button type="button" class="btn btn-info btn-md" onClick='addhwrow();'>
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div> 
@@ -148,10 +182,10 @@
     </tbody>
   </table>
   <p>&nbsp;<p>
-   <button type="button" class="btn btn-info btn-lg" onClick='loadMobTable();'>
+   <button type="button" class="btn btn-info btn-md" onClick='loadMobTable();'>
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-lg" onClick='addmtrow();'>
+    <button type="button" class="btn btn-info btn-md" onClick='addmtrow();'>
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div> 
@@ -175,10 +209,10 @@
     </tbody>
   </table>
   <p>&nbsp;<p>
-   <button type="button" class="btn btn-info btn-lg" onClick='loadLicenseTable();'>
+   <button type="button" class="btn btn-info btn-md" onClick='loadLicenseTable();'>
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-lg" onClick='addlirow();'>
+    <button type="button" class="btn btn-info btn-md" onClick='addlirow();'>
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div> 
@@ -309,6 +343,11 @@
         <button type="button" class="btn btn-default" onclick="addMTRowPost();">submit</button>
       </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GPL v3</a> <br> Fork your own copy on <a href='https://github.com/sourabh-goyal/InventoryManagement'> Github </a></p>
+      </div>
+    </footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
