@@ -510,7 +510,7 @@ function updateMTRowPost()
         {
             $("#addPCRow").dialog({ 
             autoOpen: false, 
-            title: "Edit Record",
+            title: "Add PC Record",
             show: { 
                 effect: "blind", 
                 duration: 500 
@@ -547,7 +547,7 @@ function updateMTRowPost()
     {
         $("#addHWRow").dialog({ 
             autoOpen: false, 
-            title: "Edit Record",
+            title: "Add Hardware Record",
             show: { 
                 effect: "blind", 
                 duration: 500 
@@ -587,7 +587,7 @@ function addlirow()
   {
             $("#addLicenseRow").dialog({ 
             autoOpen: false, 
-            title: "Edit Record",
+            title: "Add License Record",
             show: { 
                 effect: "blind", 
                 duration: 500 
@@ -624,7 +624,7 @@ function addmtrow()
     {
             $("#addMobRow").dialog({ 
             autoOpen: false, 
-            title: "Edit Record",
+            title: "Add Mobile Record",
             show: { 
                 effect: "blind", 
                 duration: 500 

@@ -62,6 +62,7 @@ Temporary Items
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
+im.db
 
 # Folder config file
 Desktop.ini
