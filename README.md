@@ -1,5 +1,5 @@
 # Jābitā
-inventory management tool
+An Ultra Light Weight Inventory Management Tool
 
 
 To install download the source folder.
