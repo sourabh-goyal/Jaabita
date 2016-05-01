@@ -520,24 +520,172 @@ app.get('/getCriteria', function (req, res) {
     response.push(option);
     break;
     case 'hw':
-    response = ['invoice_num' , 'description', 'quantity', 'valueOfHW', 'shippedDate', 'recievedDate', 'shipmentDutyPaid', 'courierMode', 'team', 'recievedBy'];
+    var option = {optionValue:'invoice_num', optionDisplay:'Invoice No.'};
+    response.push(option);
+    option = {optionValue:'description', optionDisplay:'Description'};
+    response.push(option);
+    option = {optionValue:'courierMode', optionDisplay:'Courier'};
+    response.push(option);
+    option = {optionValue:'team', optionDisplay:'Team'};
+    response.push(option);
+    option = {optionValue:'recievedBy', optionDisplay:'Recieved By'};
+    response.push(option);
     break;
     case 'mob':
+    var option = {optionValue:'os', optionDisplay:'Operating System'};
+    response.push(option);
+    option = {optionValue:'type', optionDisplay:'Type'};
+    response.push(option);
+    option = {optionValue:'primaryProject', optionDisplay:'Project'};
+    response.push(option);
+    option = {optionValue:'capacity', optionDisplay:'Capacity'};
+    response.push(option);
+    option = {optionValue:'mode', optionDisplay:'Mode'};
+    response.push(option);
+    option = {optionValue:'currentOwner', optionDisplay:'Owner'};
+    response.push(option);
     break;
     case 'lic':
-    var option = {optionValue:'model', optionDisplay:'Model'};
+    var option = {optionValue:'category', optionDisplay:'Category'};
     response.push(option);
-    option = {optionValue:'tag', optionDisplay:'Tag'};
+    option = {optionValue:'product', optionDisplay:'Product'};
     response.push(option);
-    option = {optionValue:'project', optionDisplay:'Project'};
+    option = {optionValue:'description', optionDisplay:'Description'};
     response.push(option);
-    option = {optionValue:'location', optionDisplay:'Location'};
+    option = {optionValue:'comments', optionDisplay:'Comments'};
     response.push(option);
-    option = {optionValue:'owner', optionDisplay:'Owner'};
+    option = {optionValue:'owners', optionDisplay:'Owner'};
     response.push(option);
     break;
   }
    res.end(JSON.stringify(response));
+})
+
+//////////////////////////////////////////////////////////////////////////
+
+app.get('/searchPCInventory', function (req, res) {
+
+  var response;
+  var   criterion = req.query.criterion;
+  var   keywords = req.query.keywords;
+
+  db.serialize(function() {
+    var response = [];
+   db.each("SELECT rowid AS id,* FROM pcinventory WHERE " +criterion +" LIKE '%"+keywords+"%'", function(err, row) {
+    if (err) {
+        res.end(JSON.stringify({error:true, msg:'some problem occured'}));
+      }
+      var info = { id:row.id, 
+        model:row.model, 
+        tag:row.tag, 
+        project:row.project, 
+        location:row.location, 
+        owner:row.owner
+      };
+        response.push(info);
+      }, function(){
+        console.log(response);
+        res.end(JSON.stringify(response));     
+      });
+  });
+})
+
+app.get('/searchHWInventory', function (req, res) {
+
+  var response;
+  var   criterion = req.query.criterion;
+  var   keywords = req.query.keywords;
+
+  db.serialize(function() {
+    var response = [];
+    //console.log("SELECT rowid AS id,* FROM pcinventory WHERE " +criterion +" LIKE '%"+keywords+"%'");
+   db.each("SELECT rowid AS id,* FROM hwinventory WHERE " +criterion +" LIKE '%"+keywords+"%'", function(err, row) {
+    if (err) {
+        res.end(JSON.stringify({error:true, msg:'some problem occured'}));
+      }
+       var info = { id:row.id, 
+        invoice:row.invoice_num, 
+        description:row.description, 
+        quantity:row.quantity, 
+        value:row.valueOfHW, 
+        shippedDate:row.shippedDate, 
+        recievedDate:row.recievedDate, 
+        shipmentDutyPaid:row.shipmentDutyPaid, 
+        courierMode:row.courierMode, 
+        team:row.team,
+        recievedBy:row.recievedBy};
+        response.push(info);
+      }, function(){
+        console.log(response);
+        res.end(JSON.stringify(response));     
+      });
+  });
+})
+
+
+app.get('/searchmobileInventory', function (req, res) {
+
+  var response;
+  var   criterion = req.query.criterion;
+  var   keywords = req.query.keywords;
+
+  db.serialize(function() {
+    var response = [];
+    console.log("SELECT rowid AS id,* FROM mobinventory WHERE " +criterion +" LIKE '%"+keywords+"%'");
+   db.each("SELECT rowid AS id,* FROM mobinventory WHERE " +criterion +" LIKE '%"+keywords+"%'", function(err, row) {
+    if (err) {
+        res.end(JSON.stringify({error:true, msg:'some problem occured'}));
+      }
+       var info = { id:row.id, 
+        os:row.os, 
+        type:row.type, 
+        size:row.size,
+        quantity:row.quantity, 
+        value:row.valueOfEquip, 
+        project:row.primaryProject,
+        adapter:row.adapter,
+        powercord:row.powercord,
+        capacity:row.capacity,
+        mode:row.mode,
+        headset:row.headset, 
+        recievedDate:row.recievedDate,
+        currentOwner:row.currentOwner
+      };
+        response.push(info);
+      }, function(){
+        console.log(response);
+        res.end(JSON.stringify(response));     
+      });
+  });
+})
+
+app.get('/searchLicenseInventory', function (req, res) {
+
+  var response;
+  var   criterion = req.query.criterion;
+  var   keywords = req.query.keywords;
+
+  db.serialize(function() {
+    var response = [];
+    console.log("SELECT rowid AS id,* FROM licenseinventory WHERE " +criterion +" LIKE '%"+keywords+"%'");
+   db.each("SELECT rowid AS id,* FROM licenseinventory WHERE " +criterion +" LIKE '%"+keywords+"%'", function(err, row) {
+    if (err) {
+        res.end(JSON.stringify({error:true, msg:'some problem occured'}));
+      }
+       var info = { id:row.id, 
+        category:row.category, 
+        product:row.product, 
+        description:row.description, 
+        quantity:row.quantity, 
+        comments:row.comments,
+        owners:row.owners
+      };
+        response.push(info);
+      }, function(){
+        console.log(response);
+        res.end(JSON.stringify(response));     
+      });
+  });
 })
 
 var server = app.listen(8081, function () {

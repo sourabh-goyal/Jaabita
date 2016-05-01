@@ -95,7 +95,7 @@
   <label for="ctlPerson">Keyword(s):</label>
   <input type="text" class="selectwidthauto" id="searchText"></input>
   <br><br>
-  <button type="button" class="btn btn-info btn-md">
+  <button type="button" class="btn btn-info btn-md" onclick="search();">
           <span class="glyphicon glyphicon-search"></span>  Search
   </button> 
   </fieldset>
@@ -343,9 +343,101 @@
         <button type="button" class="btn btn-default" onclick="addMTRowPost();">submit</button>
       </div>
     </div>
+
+    <div id="searchPCResults" style="display:none;">
+        <table class="table table-striped table-responsive" data-toggle="table" id="pcInvSearchTable" >
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th >S No.</th>
+        <th  >Model</th>
+        <th  >Tag Number</th>
+        <th  >Project</th>
+        <th >Location</th>
+        <th >Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+
+  <div id="searchHWResults" style="display:none;">
+        <table class="table table-striped table-responsive" data-toggle="table" id="hwInvSearchTable" >
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th>S No.</th>
+        <th >Invoice</th>
+        <th >Description</th>
+        <th >Quantity</th>
+        <th>Value</th>
+        <th>Shipped on</th>
+        <th>Recieved on</th>
+        <th >Shipment Duty Paid</th>
+        <th>Courier Mode</th>
+        <th >Team</th>
+        <th>Recieved By</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+
+  <div id="searchMobResults" style="display:none;">
+        <table class="table table-striped table-responsive" data-toggle="table" id="mobInvSearchTable" >
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th>S No.</th>
+        <th>OS</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Value</th>
+        <th>Quantity</th>
+        <th>Recieved Date</th>
+        <th>Primary Project</th>
+        <th>Adapter</th>
+        <th>Power Cord</th>
+        <th>Capacity</th>
+        <th>Mode</th>
+        <th>Headset</th>
+        <th>Current Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+
+  <div id="searchLicResults" style="display:none;">
+        <table class="table table-striped table-responsive" data-toggle="table" id="licInvSearchTable" >
+    <thead>
+      <tr>
+        <th class="col-md-1">Operations</th>
+        <th>S No.</th>
+        <th>Category</th>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Comments</th>
+        <th>Owners</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+
+
+
+
+
+
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GPL v3</a> <br> Fork your own copy on <a href='https://github.com/sourabh-goyal/InventoryManagement'> Github </a></p>
+        <p class="text-muted">Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GPL v3</a> <br> Fork your own copy on <a href='https://github.com/sourabh-goyal/InventoryManagement'> <img src="/images/github.png" height="20" width="20" padding-top="-30px"> </a></p>
       </div>
     </footer>
     <!-- Bootstrap core JavaScript

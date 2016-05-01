@@ -676,3 +676,63 @@ function getCriteria(val)
       $("select#ctlCrit").html(options);});
 
 }
+
+function search()
+{
+  var inventory = document.getElementById("ctlType").value;
+  var criterion = document.getElementById("ctlCrit").value;
+  var searchText = document.getElementById("searchText").value;
+  var dialogID;
+  var url;
+  var tableid;
+  var functionName = function (){};
+
+  switch (inventory)
+  {
+    case 'pc':
+     dialogID = 'searchPCResults';
+     url = '/searchPCInventory';
+     tableid = 'pcInvSearchTable';
+     functionName = fillPCTable;
+    break;
+    case 'hw':
+     dialogID = 'searchHWResults';
+     url = '/searchHWInventory';
+     tableid = 'hwInvSearchTable';
+     functionName = fillHWTable;
+    break;
+    case 'mob':
+     dialogID = 'searchMobResults';
+     url = '/searchmobileInventory';
+     tableid = 'mobInvSearchTable';
+     functionName = fillMobTable;
+    break;
+    case 'lic':
+     dialogID = 'searchLicResults';
+     url = '/searchLicenseInventory';
+     tableid = 'licInvSearchTable';
+     functionName = fillLicenseTable;
+    break;
+  }
+
+  url = url + '?criterion='+criterion+'&keywords='+searchText;
+  var w = $(window).width()*0.95;
+  $("#"+dialogID).dialog({ 
+            width: w,
+            autoOpen: false, 
+            title: "Search Result",
+            show: { 
+                effect: "blind", 
+                duration: 500
+            }, 
+            hide: { 
+                effect: "fold",
+                duration: 500 
+            }
+        });  
+  $.getJSON(url, function(j){
+      $("#"+dialogID).dialog("open");
+      functionName(JSON.stringify(j), tableid);  
+      });
+
+}
