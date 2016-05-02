@@ -19,6 +19,10 @@
   "engines": {
     "node": "latest"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourabh-goyal/Jaabita"
+  },
   "keywords": [
     "node",
     "inventorymanagement",
@@ -26,7 +30,7 @@
   ],
   "author": "Sourabh Goyal",
   "contributors": [
-    "Sourabh Goyal (sourabh.goyal@fs.utc.com)"
+    "Sourabh Goyal (sourabh.yhs@gmail.com)"
   ],
-  "license": "MIT"
+  "license": "GPLv3"
 }
