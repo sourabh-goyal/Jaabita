@@ -6,16 +6,20 @@
         
         switch (tableId)
         {
-          case 'hwInvTable' : 
+          case 'hwInvTable' :
+		  case 'hwInvSearchTable' :
             uri = '/deleteHWInventory?id='+rowid;
             break;
           case 'pcInvTable' :
+		  case 'pcInvSearchTable' :
             uri = '/deletePCInventory?id='+rowid;
             break;
           case 'licenseInvTable' :
+		  case 'licInvSearchTable' :
             uri = '/deleteLicenseInventory?id='+rowid;
             break;
           case 'mobileInvTable' :
+		  case 'mobInvSearchTable' :
             uri = '/deleteMobileInventory?id='+rowid;
             break;
         }
@@ -28,16 +32,20 @@
           switch (tableId)
           {
           case 'hwInvTable' : 
-            loadHWTable();
+		  case 'hwInvSearchTable' :
+            loadHWTable(tableId);
             break;
           case 'pcInvTable' :
-            loadPCTable();
+		  case 'pcInvSearchTable' :
+            loadPCTable(tableId);
             break;
           case 'licenseInvTable' :
-            loadLicenseTable();
+		  case 'licInvSearchTable' :
+            loadLicenseTable(tableId);
             break;
           case 'mobileInvTable' :
-            loadMobTable();
+		  case 'mobInvSearchTable' : 
+            loadMobTable(tableId);
             break;
           }
           }
@@ -55,15 +63,19 @@
         switch (tableId)
         {
           case 'hwInvTable' : 
+		  case 'hwInvSearchTable' :
             uri = '/copyHWInventory?id='+rowid;
             break;
           case 'pcInvTable' :
+		  case 'pcInvSearchTable' :
             uri = '/copyPCInventory?id='+rowid;
             break;
           case 'licenseInvTable' :
+		  case 'licInvSearchTable' :
             uri = '/copyLicenseInventory?id='+rowid;
             break;
           case 'mobileInvTable' :
+		  case 'mobInvSearchTable' :
             uri = '/copyMobileInventory?id='+rowid;
             break;
         }
@@ -76,16 +88,20 @@
           switch (tableId)
           {
           case 'hwInvTable' : 
-            loadHWTable();
+		  case 'hwInvSearchTable' :
+            loadHWTable(tableId);
             break;
           case 'pcInvTable' :
-            loadPCTable();
+		  case 'pcInvSearchTable' :
+            loadPCTable(tableId);
             break;
           case 'licenseInvTable' :
-            loadLicenseTable();
+		  case 'licInvSearchTable' :
+            loadLicenseTable(tableId);
             break;
           case 'mobileInvTable' :
-            loadMobTable();
+		  case 'mobInvSearchTable' :
+            loadMobTable(tableId);
             break;
           }
           }
@@ -120,8 +136,9 @@
       }
 
 
-      function updatePCRowPost()
+      function updatePCRowPost(tableid)
       {
+		console.log(tableid);
         $("#updatePCRow").dialog("close");
         var data = { id:$("#idupdatepc").val(), 
         model:$("#modelupdatepc").val(), 
@@ -136,7 +153,8 @@
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadPCTable();
+        loadPCTable(tableid);
+		loadPCTable('pcInvSearchTable');
     }
 
     function edithwrow(tableid, rowid, rowno)
@@ -168,7 +186,7 @@
         $("#updateHWRow").dialog("open");
     }
 
-    function updateHWRowPost()
+    function updateHWRowPost(tableid)
       {
         $("#updateHWRow").dialog("close");
         var data = { id:$("#idupdatehw").val(), 
@@ -189,7 +207,8 @@
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadHWTable();
+        loadHWTable(tableid);
+		loadPCTable('hwInvSearchTable');
     }
 function editlirow(tableid, rowid, rowno)
   {
@@ -216,8 +235,9 @@ function editlirow(tableid, rowid, rowno)
         $("#updateLicenseRow").dialog("open");
     }
 
-function updateLIRowPost()
+function updateLIRowPost(tableid)
       {
+		
         $("#updateLicenseRow").dialog("close");
         var data = { id:$("#idupdateli").val(), 
         category:$("#categoryupdateli").val(), 
@@ -233,7 +253,8 @@ function updateLIRowPost()
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadLicenseTable();
+        loadLicenseTable(tableid);
+		loadPCTable('licInvSearchTable');
     }
 
 function editmtrow(tableid, rowid, rowno)
@@ -293,7 +314,8 @@ function updateMTRowPost()
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadMobTable();
+        loadMobTable(tableid);
+		loadMobTable('mobInvSearchTable');
     }
         function fillPCTable(jsonResponse, tableId)
         {
@@ -457,48 +479,48 @@ function updateMTRowPost()
         }
 
 
-        function loadPCTable()
+        function loadPCTable(tableid)
         {
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
           if (xhttp.readyState == 4 && xhttp.status == 200) {
-          fillPCTable(xhttp.responseText, "pcInvTable");
+          fillPCTable(xhttp.responseText, tableid);
           }
           };
           xhttp.open("GET", "/getPCInventory", true);
          xhttp.send();
         }
 
-        function loadHWTable()
+        function loadHWTable(tableid)
         {
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
           if (xhttp.readyState == 4 && xhttp.status == 200) {
-          fillHWTable(xhttp.responseText, "hwInvTable");
+          fillHWTable(xhttp.responseText, tableid);
           }
           };
           xhttp.open("GET", "/getHWInventory", true);
          xhttp.send();
         }
 
-        function loadMobTable()
+        function loadMobTable(tableid)
         {
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
           if (xhttp.readyState == 4 && xhttp.status == 200) {
-          fillMobTable(xhttp.responseText, "mobileInvTable");
+          fillMobTable(xhttp.responseText, tableid);
           }
           };
           xhttp.open("GET", "/getmobileInventory", true);
          xhttp.send();
         }
 
-        function loadLicenseTable()
+        function loadLicenseTable(tableid)
         {
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
           if (xhttp.readyState == 4 && xhttp.status == 200) {
-          fillLicenseTable(xhttp.responseText, "licenseInvTable");
+          fillLicenseTable(xhttp.responseText, tableid);
           }
           };
           xhttp.open("GET", "/getLicenseInventory", true);
@@ -524,7 +546,7 @@ function updateMTRowPost()
       }
 
 
-      function addPCRowPost()
+      function addPCRowPost(tableid)
       {
         $("#addPCRow").dialog("close");
         var data = { 
@@ -540,7 +562,7 @@ function updateMTRowPost()
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadPCTable();
+        loadPCTable(tableid);
     }
 
     function addhwrow()
@@ -560,7 +582,7 @@ function updateMTRowPost()
         $("#addHWRow").dialog("open");
     }
 
-    function addHWRowPost()
+    function addHWRowPost(tableid)
       {
         $("#addHWRow").dialog("close");
         var data = { 
@@ -581,7 +603,7 @@ function updateMTRowPost()
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadHWTable();
+        loadHWTable(tableid);
     }
 function addlirow()
   {
@@ -600,7 +622,7 @@ function addlirow()
         $("#addLicenseRow").dialog("open");
     }
 
-function addLIRowPost()
+function addLIRowPost(tableid)
       {
         $("#addLicenseRow").dialog("close");
         var data = { 
@@ -617,7 +639,7 @@ function addLIRowPost()
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadLicenseTable();
+        loadLicenseTable(tableid);
     }
 
 function addmtrow()
@@ -637,7 +659,7 @@ function addmtrow()
         $("#addMobRow").dialog("open");
     }
 
-function addMTRowPost()
+function addMTRowPost(tableid)
       {
         $("#addMobRow").dialog("close");
         var data = {  
@@ -662,7 +684,7 @@ function addMTRowPost()
           contentType: 'application/json',
           data: JSON.stringify(data)
       });
-        loadMobTable();
+        loadMobTable(tableid);
     }
 /////////////////////////////////////////////////////////////////
 function getCriteria(val)
