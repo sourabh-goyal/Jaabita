@@ -54,10 +54,10 @@
       <h1><span><img src='/images/inventory_icon.png' height="40" width="50"></span> Jābitā </h1><span style="font-size:16px">An Ultra Light Weight Inventory Management Tool</span><br><br>
       <ul class="nav nav-tabs ">
         <li  class="active"><a data-toggle="tab" href="#home"><span class="glyphicon glyphicon-search"></span> Search</a></li>
-        <li ><a data-toggle="tab" onclick="loadPCTable();" href="#pcInv"> <span class="glyphicon glyphicon-blackboard"></span> PC</a></li>
-        <li><a data-toggle="tab" onclick="loadHWTable();" href="#hwInv"><span class="glyphicon glyphicon-wrench"> Hardware</a></li>
-        <li><a data-toggle="tab" onclick="loadMobTable();" href="#mobileTabInv"><span class="glyphicon glyphicon-phone"></span> Mobile</a></li>
-        <li><a data-toggle="tab" onclick="loadLicenseTable();" href="#licenseInv"><span class="glyphicon glyphicon-file"></span> License</a></li>
+        <li ><a data-toggle="tab" onclick="loadPCTable('pcInvTable');" href="#pcInv"> <span class="glyphicon glyphicon-blackboard"></span> PC</a></li>
+        <li><a data-toggle="tab" onclick="loadHWTable('hwInvTable');" href="#hwInv"><span class="glyphicon glyphicon-wrench"> Hardware</a></li>
+        <li><a data-toggle="tab" onclick="loadMobTable('mobileInvTable');" href="#mobileTabInv"><span class="glyphicon glyphicon-phone"></span> Mobile</a></li>
+        <li><a data-toggle="tab" onclick="loadLicenseTable('licenseInvTable');" href="#licenseInv"><span class="glyphicon glyphicon-file"></span> License</a></li>
       </ul>
 
     <div class="tab-content">
@@ -119,10 +119,10 @@
   </table>
   <p>&nbsp;<p>
    
-<button type="button" class="btn btn-info btn-md" onClick='loadPCTable();'>
+<button type="button" class="btn btn-info btn-md" onClick="loadPCTable('pcInvTable');">
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-md" onClick="addpcrow();">
+    <button type="button" class="btn btn-info btn-md" onClick="addpcrow('pcInvTable');">
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div>
@@ -149,10 +149,10 @@
     </tbody>
   </table>
   <p>&nbsp;<p>
-   <button type="button" class="btn btn-info btn-md" onClick='loadHWTable();'>
+   <button type="button" class="btn btn-info btn-md" onClick="loadHWTable('hwInvTable');">
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-md" onClick='addhwrow();'>
+    <button type="button" class="btn btn-info btn-md" onClick="addhwrow('hwInvTable');"">
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div> 
@@ -182,10 +182,10 @@
     </tbody>
   </table>
   <p>&nbsp;<p>
-   <button type="button" class="btn btn-info btn-md" onClick='loadMobTable();'>
+   <button type="button" class="btn btn-info btn-md" onClick="loadMobTable('mobileInvTable');">
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-md" onClick='addmtrow();'>
+    <button type="button" class="btn btn-info btn-md" onClick="addmtrow('mobileInvTable');">
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div> 
@@ -209,10 +209,10 @@
     </tbody>
   </table>
   <p>&nbsp;<p>
-   <button type="button" class="btn btn-info btn-md" onClick='loadLicenseTable();'>
+   <button type="button" class="btn btn-info btn-md" onClick="loadLicenseTable('licenseInvTable');">
           <span class="glyphicon glyphicon-refresh" title=refresh></span>
     </button>
-    <button type="button" class="btn btn-info btn-md" onClick='addlirow();'>
+    <button type="button" class="btn btn-info btn-md" onClick="addlirow('licenseInvTable');">
           <span class="glyphicon glyphicon-plus" title="add"></span> 
     </button>
       </div> 
@@ -227,7 +227,7 @@
         <label>Project:</label><input id="projectupdatepc" name="project" type="text" required><br>
         <label>Location:</label><input id="locationupdatepc" name="location" type="text" required><br>
         <label>Owner:</label><input id="ownerupdatepc" name="owner" type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="updatePCRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="updatePCRowPost('pcInvTable');">submit</button>
     </div>
   </div>
   <div id="updateHWRow" style="display:none;">
@@ -244,7 +244,7 @@
         <label>Courier Mode:</label><input id="courierupdatehw" type="text" required><br>
         <label>Team:</label><input id="teamupdatehw"  type="text" required><br>
         <label>Recieved by:</label><input id="rcvbyupdatehw" type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="updateHWRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="updateHWRowPost('hwInvTable');">submit</button>
     </div>
   </div>
   <div id="updateLicenseRow" style="display:none;">
@@ -257,7 +257,7 @@
         <label>Quantity:</label><input id="qtyupdateli" type="text" required><br>
         <label>Comments:</label><input id="commentupdateli" type="text" required><br>
         <label>Owners:</label><input id="ownerupdateli"  type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="updateLIRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="updateLIRowPost('licenseInvTable');">submit</button>
     </div>
   </div>
    <div id="updateMobRow" style="display:none;">
@@ -277,7 +277,7 @@
         <label>Mode:</label><input id="modeupdatemt"  type="text" required><br>
         <label>HeadSet:</label><input id="headsetupdatemt"  type="text" required><br>
         <label>Current Owner:</label><input id="coupdatemt"  type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="updateMTRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="updateMTRowPost('mobileInvTable');">submit</button>
       </div>
     </div>
 
@@ -290,7 +290,7 @@
         <label>Project:</label><input id="iprojectupdatepc" name="project" type="text" required><br>
         <label>Location:</label><input id="ilocationupdatepc" name="location" type="text" required><br>
         <label>Owner:</label><input id="iownerupdatepc" name="owner" type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="addPCRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="addPCRowPost('pcInvTable');">submit</button>
     </div>
   </div>
   <div id="addHWRow" style="display:none;">
@@ -307,7 +307,7 @@
         <label>Courier Mode:</label><input id="icourierupdatehw" type="text" required><br>
         <label>Team:</label><input id="iteamupdatehw"  type="text" required><br>
         <label>Recieved by:</label><input id="ircvbyupdatehw" type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="addHWRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="addHWRowPost('hwInvTable');">submit</button>
     </div>
   </div>
   <div id="addLicenseRow" style="display:none;">
@@ -320,7 +320,7 @@
         <label>Quantity:</label><input id="iqtyupdateli" type="text" required><br>
         <label>Comments:</label><input id="icommentupdateli" type="text" required><br>
         <label>Owners:</label><input id="iownerupdateli"  type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="addLIRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="addLIRowPost('licenseInvTable');">submit</button>
     </div>
   </div>
    <div id="addMobRow" style="display:none;">
@@ -340,7 +340,7 @@
         <label>Mode:</label><input id="imodeupdatemt"  type="text" required><br>
         <label>HeadSet:</label><input id="iheadsetupdatemt"  type="text" required><br>
         <label>Current Owner:</label><input id="icoupdatemt"  type="text" required><br><br>
-        <button type="button" class="btn btn-default" onclick="addMTRowPost();">submit</button>
+        <button type="button" class="btn btn-default" onclick="addMTRowPost('mobileInvTable');">submit</button>
       </div>
     </div>
 
@@ -435,11 +435,11 @@
 
 
 
-    <footer class="footer">
+     <footer class="footer">
       <div class="container">
         <p class="text-muted">Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GPL v3</a> <br> Fork your own copy on <a href='https://github.com/sourabh-goyal/InventoryManagement'> <img src="/images/github.png" height="20" width="20" padding-top="-30px"> </a></p>
       </div>
-    </footer>
+    </footer> 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
