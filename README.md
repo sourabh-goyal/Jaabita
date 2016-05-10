@@ -19,3 +19,5 @@ You may change that in server.js in the app.listen function to your desired port
 
 
 Current Jābitā supports PC, Hardware, Mobile & Tablet, and License inventory.
+
+Demo : https://immense-shelf-26142.herokuapp.com/
